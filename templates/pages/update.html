@@ -1,6 +1,4 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div style="direction: rtl" class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -12,17 +10,8 @@
       <!-- /.card-header -->
       <!-- form start -->
       <form method="POST" enctype="multipart/form-data">
-        <div class="card-body">
-          <input type="text" class="form-control" placeholder="input text" />
-          <input type="text" class="form-control" placeholder="input text" />
-          <input type="text" class="form-control" placeholder="input text" />
-          <input type="text" class="form-control" placeholder="input text" />
-          <input type="text" class="form-control" placeholder="input text" />
-          <input type="text" class="form-control" placeholder="input text" />
-          <input type="text" class="form-control" placeholder="input text" />
-
-          <small id="totalrente" class="form-text text-muted"></small>
-        </div>
+        {% csrf_token %}
+        <div class="card-body">{{form}}</div>
         <!-- /.card-body -->
 
         <div class="card-footer">

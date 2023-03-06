@@ -53,6 +53,63 @@
 /*here i will make loop for get id category and status for contact with books */
 /*حساب اجمالي الارباح و هي عبارة عن حاصل جمع سعر الكتب عند البيع بالاضافة الى سعر استعارة الكتاب*/
   });
+$('#rentaldays').keyup(function(){
+  $('#totalrental').val($('#rentaldays').val()*$('#rentalprice').val())
+});
+$(document).ready(function(){
+  var total =0;
+  $('.totalprice').each(function(){
+    $(this).hide()
+    var salary = $(this).text()
+    total += parseInt(salary)
+  });
+  $('#totalsalarys').text(total+"$")
+  
+});
+
+
+var total1= 0;
+$('.totalrental').each(function(){
+  $(this).hide()   //.totalrental
+  var salary1 = $(this).text()
+  total1 += parseInt(salary1)
+});
+$('.salaryrental').text(total1)
+$('.salaryrental').hide()   // .salaryrental
+
+var total2= 0;
+$('.totalsold').each(function(){
+  $(this).hide()
+  var salary2 = $(this).text()
+  total2 += parseInt(salary2)
+});
+$('.salarysold').text(total2)
+$('.salarysold').hide()
+
+
+{% for b in books %}
+$('.cat{{b.catgory.id}}').click(function(){
+  $('.bookhide').hide()
+  $('.book{{b.catgory.id}}').show()
+});
+//statussold statusrental statusavailable
+$('.status{{b.status}}').click(function(){
+  $('.bookhide').hide()
+  $('.book{{b.status}}').show()
+});
+
+
+{% endfor %}
+
+$('#catinput').hide()
+$('#addcat').click(function(){
+  $('#catinput').show()
+});
+$('#backcat').click(function(){
+  $('#catinput').hide()
+})
+
+
 </script>
 <script>
  
@@ -85,20 +142,20 @@ $(function () {
 
       ],
 
-
+      
       datasets: [
         {
           backgroundColor: '#007bff',
           borderColor    : '#007bff',
           data           : [ 
-               '50',
+            $('.salarysold').text(),
           ]
         },
         {
           backgroundColor: '#ced4da',
           borderColor    : '#ced4da',
           data           : [ 
-                '30',
+            $('.salaryrental').text(),
           ]
         }
       ]
@@ -158,7 +215,7 @@ $(function () {
     type: 'pie',
     data: {
       datasets: [{
-        data: ['35','25','40'],
+        data: ['{{bookavailble}}','{{booksold}}','{{bookrental}}'],
         backgroundColor :["#27c100","#f3545d","#fdaf4b"],
         borderWidth: 10,
         

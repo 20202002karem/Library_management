@@ -22,8 +22,8 @@
                 <div class="row d-flex align-items-stretch">
                   <!-- بداية الكتاب -->
                   {% for b in books %}
-                  <div   class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch ">
-                    <div  id="" class="card bg-light">
+                  <div   class="col-12 col-sm-6 col-md-4 bookhide book{{b.catgory.id}} book{{b.status}} ">
+                    <div  id="" class="card bg-light ">
                       <div  class="card-header text-muted border-bottom-0">
                         {{b.catgory}}
                       </div>
@@ -42,17 +42,19 @@
                           </div>
                           <div class="col-5 text-center">
                             {% if b.photo_book %}
-                              <img style="height: 120px; width: 120px;"  src="{{b.photo_book.url}} " alt="" class="img-circle img-fluid">
+                              <img style="height: 120px; width: 120px;"  src="{{b.photo_book.url}} " alt="" class="img-circle img-fluid ">
+                            {% else %}
+                            <img style="height: 120px; width: 120px;"  src="/static/dist/img/photo1.png" alt="" class="img-circle img-fluid ">
                               {% endif %}
                             </div>
                         </div>
                       </div>
                       <div class="card-footer">
                         <div class="text-right">
-                          <a href="#" class="btn btn-sm bg-danger">
+                          <a href="{% url 'delete' b.id %}" class="btn btn-sm bg-danger">
                             <i class="fas fa-trash"></i>
                           </a>
-                          <a href="#" class="btn btn-sm btn-primary">
+                          <a href="{% url 'update' b.id %}" class="btn btn-sm btn-primary">
                             <i class="fas fa-book"></i> تعديل
                           </a>
                         </div>

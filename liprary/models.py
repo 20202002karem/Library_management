@@ -25,6 +25,7 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     rental_price_day = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     rental_period = models.IntegerField( blank=True, null=True)
+    total_rental = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     catgory = models.ForeignKey(Catgory, on_delete=property)
     
     def __str__(self):
